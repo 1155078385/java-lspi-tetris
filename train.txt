@@ -1,0 +1,788 @@
+Training for 30 rounds...
+Average training score: 0.0 s.d.: 0.0
+Testing for 30 rounds...
+Average testing score: 0.0 s.d.: 0.0
+Training for 30 rounds...
+Average training score: 0.06666666666666667 s.d.: 0.2537081317024624
+Testing for 30 rounds...
+Average testing score: 2.7 s.d.: 4.257245345412275
+Test average better than best ever training average, swapping weights...
+        -0.0405489933329874,
+        0.00267154662822881,
+        3.10534822226229,
+        0.013871468234618786,
+        -0.013548317307500984,
+        -0.0026402159577086273,
+        0.00978631683322722,
+        4.0341162092873053E-4,
+        -0.008244421639372276,
+        2.0506017216516357,
+        -0.0036110427071310413,
+        -0.20320475387320153,
+        0.0013207185750135665,
+        2.5143788065172827E-4,
+        4.7769518076771014E-4
+Training for 30 rounds...
+Average training score: 0.0 s.d.: 0.0
+Testing for 30 rounds...
+Average testing score: 16.033333333333335 s.d.: 22.84505530140249
+Test average better than best ever training average, swapping weights...
+        -0.09628986642250725,
+        0.014327013389376128,
+        10.345700665554562,
+        -0.021970211298149175,
+        0.02854056743405174,
+        -0.004978161326021909,
+        0.043586512201844924,
+        -0.022253978192657346,
+        -0.039476031057075575,
+        9.27037619330977,
+        -0.013876635635335338,
+        -0.9345714819263896,
+        -4.755391425852819E-4,
+        -0.0051210770607348355,
+        0.017863845769688698
+Training for 30 rounds...
+Average training score: 0.0 s.d.: 0.0
+Testing for 30 rounds...
+Average testing score: 16.333333333333332 s.d.: 18.966394964015553
+Test average better than best ever training average, swapping weights...
+        -0.13650432170098598,
+        0.03148155084990194,
+        15.183976140842496,
+        -0.01975052451054736,
+        0.06875015778680955,
+        -0.006900443860738839,
+        0.0537254594059038,
+        -0.04158524599862189,
+        -0.05013073324947634,
+        14.117583390266992,
+        -0.012220398976976521,
+        -1.4313388983991042,
+        -0.004099763762958129,
+        -0.013632340619468601,
+        0.014438381607175267
+Training for 30 rounds...
+Average training score: 0.0 s.d.: 0.0
+Testing for 30 rounds...
+Average testing score: 20.333333333333332 s.d.: 25.71997747625978
+Test average better than best ever training average, swapping weights...
+        -0.14621143941882292,
+        0.0424421641512481,
+        17.486052347115756,
+        -0.007576935705326932,
+        0.08356177978646473,
+        -0.005900947599750302,
+        0.05173079223414301,
+        -0.04615180751317427,
+        -0.056544625810079074,
+        16.433240696925363,
+        -0.009753614917200462,
+        -1.6685802007807147,
+        -0.005934567248408373,
+        -0.018105938276929374,
+        0.006959281187399381
+Training for 30 rounds...
+Average training score: 0.03333333333333333 s.d.: 0.18257418583505536
+Testing for 30 rounds...
+Average testing score: 16.833333333333332 s.d.: 22.502234882620964
+Training for 30 rounds...
+Average training score: 23.3 s.d.: 12.011919367717704
+Testing for 30 rounds...
+Average testing score: 23.7 s.d.: 12.315815455942314
+Test average better than best ever training average, swapping weights...
+        -0.17112400523600285,
+        0.059526310026889614,
+        21.012795661584,
+        0.06922360582923463,
+        0.0759983570836481,
+        -2.982130988365265E-4,
+        0.05005716966665598,
+        -0.05445571070789772,
+        -0.0671884982872514,
+        19.98565716543976,
+        -0.008539623738210878,
+        -2.031703875459772,
+        -0.006919671017937964,
+        -0.022990983623595963,
+        -0.025134440221384242
+Training for 30 rounds...
+Average training score: 25.266666666666666 s.d.: 17.45325448029745
+Testing for 30 rounds...
+Average testing score: 24.3 s.d.: 14.607036566031434
+Training for 30 rounds...
+Average training score: 28.133333333333333 s.d.: 23.965108737112153
+Testing for 30 rounds...
+Average testing score: 33.06666666666667 s.d.: 28.617412913103806
+Test average better than best ever training average, swapping weights...
+        -0.18943517129817092,
+        0.07330883643904682,
+        23.131324780716536,
+        0.1413300438291773,
+        0.042302040867153876,
+        0.004047380767644961,
+        0.050537059384134234,
+        -0.06861016957994587,
+        -0.06859369521818778,
+        22.12430442492874,
+        -0.014571956684511028,
+        -2.250672309671773,
+        -0.006332187708720878,
+        -0.025968070203280524,
+        -0.051960510615858484
+Training for 30 rounds...
+Average training score: 23.5 s.d.: 18.819927076702868
+Testing for 30 rounds...
+Average testing score: 45.86666666666667 s.d.: 59.04177363937129
+Test average better than best ever training average, swapping weights...
+        -0.19837992309575167,
+        0.07493116864244675,
+        23.50343226604324,
+        0.16677007056725732,
+        0.031279869131680856,
+        0.0016849604329561016,
+        0.05105163725641898,
+        -0.0726990433664255,
+        -0.06528380777900697,
+        22.5028832842648,
+        -0.01734344534694189,
+        -2.2895076099398883,
+        -0.00631126382768523,
+        -0.025968784328364934,
+        -0.06393836550951436
+Training for 30 rounds...
+Average training score: 25.866666666666667 s.d.: 16.403812284687497
+Testing for 30 rounds...
+Average testing score: 43.06666666666667 s.d.: 42.3744663954468
+Training for 30 rounds...
+Average training score: 52.9 s.d.: 29.50435385755336
+Testing for 30 rounds...
+Average testing score: 46.63333333333333 s.d.: 23.620490812150727
+Training for 30 rounds...
+Average training score: 58.53333333333333 s.d.: 45.24777253678052
+Testing for 30 rounds...
+Average testing score: 74.9 s.d.: 69.7904745995296
+Test average better than best ever training average, swapping weights...
+        -0.24262026308758855,
+        0.07618761152492615,
+        23.66210637978333,
+        0.23887692130677904,
+        -0.010412813298378542,
+        -0.0057894965565457104,
+        0.056531956253089106,
+        -0.08916405033647595,
+        -0.046885878551440746,
+        22.67535768155172,
+        -0.02662891652174218,
+        -2.307504879666614,
+        -0.0041060521799256774,
+        -0.02500448003980516,
+        -0.09755855817345686
+Training for 30 rounds...
+Average training score: 44.03333333333333 s.d.: 36.991595814719055
+Testing for 30 rounds...
+Average testing score: 93.4 s.d.: 97.1721898629367
+Test average better than best ever training average, swapping weights...
+        -0.2563719451423362,
+        0.07479969480894366,
+        23.774947208476963,
+        0.2569971786425575,
+        -0.01862346362849332,
+        -0.007516685493178239,
+        0.05815788692400196,
+        -0.09180691781203415,
+        -0.04315057755088597,
+        22.790596030623014,
+        -0.02817955738305379,
+        -2.3195566134262364,
+        -0.004038060880687272,
+        -0.024775952804409217,
+        -0.10713270627725807
+Training for 30 rounds...
+Average training score: 48.333333333333336 s.d.: 35.40829177518708
+Testing for 30 rounds...
+Average testing score: 88.46666666666667 s.d.: 80.66391179868893
+Training for 30 rounds...
+Average training score: 64.96666666666667 s.d.: 52.989578242319034
+Testing for 30 rounds...
+Average testing score: 64.1 s.d.: 46.70010706625842
+Training for 30 rounds...
+Average training score: 71.33333333333333 s.d.: 49.80536831149509
+Testing for 30 rounds...
+Average testing score: 57.2 s.d.: 8.541985556144414
+Training for 30 rounds...
+Average training score: 75.7 s.d.: 53.81266996048293
+Testing for 30 rounds...
+Average testing score: 80.73333333333333 s.d.: 68.74304980542924
+Training for 30 rounds...
+Average training score: 101.63333333333334 s.d.: 93.26657505767277
+Testing for 30 rounds...
+Average testing score: 69.83333333333333 s.d.: NaN
+Training for 30 rounds...
+Average training score: 79.13333333333334 s.d.: 61.564506866758265
+Testing for 30 rounds...
+Average testing score: 84.93333333333334 s.d.: 77.63226015060977
+Training for 30 rounds...
+Average training score: 60.03333333333333 s.d.: 45.27881694973728
+Testing for 30 rounds...
+Average testing score: 64.7 s.d.: 41.755569523201295
+Training for 30 rounds...
+Average training score: 64.8 s.d.: 38.21030732939604
+Testing for 30 rounds...
+Average testing score: 76.06666666666666 s.d.: 56.33348976377655
+Training for 30 rounds...
+Average training score: 71.76666666666667 s.d.: 57.903417404557715
+Testing for 30 rounds...
+Average testing score: 79.46666666666667 s.d.: 58.90268615930524
+Training for 30 rounds...
+Average training score: 75.43333333333334 s.d.: 59.475108286972684
+Testing for 30 rounds...
+Average testing score: 73.1 s.d.: 58.73015438837836
+Training for 30 rounds...
+Average training score: 65.86666666666666 s.d.: 44.36349332762114
+Testing for 30 rounds...
+Average testing score: 77.96666666666667 s.d.: 65.58092307420175
+Training for 30 rounds...
+Average training score: 82.36666666666666 s.d.: 70.70945083071717
+Testing for 30 rounds...
+Average testing score: 77.2 s.d.: 74.66910915545307
+Training for 30 rounds...
+Average training score: 73.36666666666666 s.d.: 59.53178422769919
+Testing for 30 rounds...
+Average testing score: 97.06666666666666 s.d.: 75.73234781615533
+Training for 30 rounds...
+Average training score: 89.96666666666667 s.d.: 70.75430209088219
+Testing for 30 rounds...
+Average testing score: 97.96666666666667 s.d.: 75.92032272256785
+Training for 30 rounds...
+Average training score: 103.0 s.d.: 67.46033317234757
+Testing for 30 rounds...
+Average testing score: 92.33333333333333 s.d.: 58.26337348330572
+Training for 30 rounds...
+Average training score: 101.26666666666667 s.d.: 86.81487769101416
+Testing for 30 rounds...
+Average testing score: 90.36666666666666 s.d.: 47.63476949002499
+Training for 30 rounds...
+Average training score: 98.53333333333333 s.d.: 72.17733588940474
+Testing for 30 rounds...
+Average testing score: 83.46666666666667 s.d.: 43.949239267408345
+Training for 30 rounds...
+Average training score: 83.8 s.d.: 59.36235890842289
+Testing for 30 rounds...
+Average testing score: 107.5 s.d.: 105.20947905373652
+Test average better than best ever training average, swapping weights...
+        -0.32964345017033697,
+        0.051719085797421016,
+        26.530354798877823,
+        0.35124021616799245,
+        -0.04551705977686055,
+        -0.018359294043895177,
+        0.06542143417296598,
+        -0.09502142240333829,
+        -0.041609638023990425,
+        25.563456006076045,
+        -0.01835041920219531,
+        -2.597654827258251,
+        -0.011145269495074994,
+        -0.016558143142112194,
+        -0.1817802663334698
+Training for 30 rounds...
+Average training score: 106.66666666666667 s.d.: 87.56921728605293
+Testing for 30 rounds...
+Average testing score: 107.03333333333333 s.d.: 100.38036855284302
+Training for 30 rounds...
+Average training score: 87.83333333333333 s.d.: 73.25349624860017
+Testing for 30 rounds...
+Average testing score: 74.96666666666667 s.d.: 38.230622016521195
+Training for 30 rounds...
+Average training score: 119.5 s.d.: 101.85207326110847
+Testing for 30 rounds...
+Average testing score: 85.1 s.d.: NaN
+Training for 30 rounds...
+Average training score: 97.46666666666667 s.d.: 64.87639883992316
+Testing for 30 rounds...
+Average testing score: 94.8 s.d.: 69.6995522669041
+Training for 30 rounds...
+Average training score: 133.33333333333334 s.d.: 109.46967249152752
+Testing for 30 rounds...
+Average testing score: 118.1 s.d.: 69.55895539657038
+Training for 30 rounds...
+Average training score: 103.2 s.d.: 109.93270668913779
+Testing for 30 rounds...
+Average testing score: 119.03333333333333 s.d.: 118.64025600456021
+Training for 30 rounds...
+Average training score: 111.4 s.d.: 83.72022373398774
+Testing for 30 rounds...
+Average testing score: 149.9 s.d.: 136.88822523101302
+Test average better than best ever training average, swapping weights...
+        -0.3357747794140271,
+        0.04590768637943521,
+        27.178969803442417,
+        0.36044917759768735,
+        -0.04215879076972434,
+        -0.018217095750535824,
+        0.06670277689028178,
+        -0.09676638741046331,
+        -0.04396944682908502,
+        26.21322717054272,
+        -0.016549391828167823,
+        -2.6613007807163105,
+        -0.01458769683396988,
+        -0.014715300050147581,
+        -0.19314451314624972
+Training for 30 rounds...
+Average training score: 128.36666666666667 s.d.: 115.31709905011195
+Testing for 30 rounds...
+Average testing score: 119.53333333333333 s.d.: 84.1827104317281
+Training for 30 rounds...
+Average training score: 152.1 s.d.: 136.9183874707346
+Testing for 30 rounds...
+Average testing score: 118.6 s.d.: 69.45804985496767
+Training for 30 rounds...
+Average training score: 131.03333333333333 s.d.: 107.59710396478705
+Testing for 30 rounds...
+Average testing score: 108.43333333333334 s.d.: 76.68645671615138
+Training for 30 rounds...
+Average training score: 98.86666666666666 s.d.: 64.60208885986174
+Testing for 30 rounds...
+Average testing score: 144.06666666666666 s.d.: 133.58095397311632
+Training for 30 rounds...
+Average training score: 133.53333333333333 s.d.: 94.87622911232673
+Testing for 30 rounds...
+Average testing score: 154.4 s.d.: 128.89498532285617
+Test average better than best ever training average, swapping weights...
+        -0.3393533171924699,
+        0.04061893390424576,
+        27.574719833048633,
+        0.36584797509342254,
+        -0.039061733662331205,
+        -0.016841245996633038,
+        0.067593774768162,
+        -0.09683986876969237,
+        -0.04595538433775356,
+        26.609542043616106,
+        -0.015177278172801595,
+        -2.7003659107231677,
+        -0.017618583746514965,
+        -0.013616303621768477,
+        -0.2004411987130792
+Training for 30 rounds...
+Average training score: 112.3 s.d.: 89.6345646077103
+Testing for 30 rounds...
+Average testing score: 115.56666666666666 s.d.: 64.655292873451
+Training for 30 rounds...
+Average training score: 121.23333333333333 s.d.: 91.45063991153853
+Testing for 30 rounds...
+Average testing score: 167.36666666666667 s.d.: 194.83560119817136
+Test average better than best ever training average, swapping weights...
+        -0.3399900095057412,
+        0.03907184322230117,
+        27.667211008505248,
+        0.36732484381275754,
+        -0.037774315795239696,
+        -0.016762360377733626,
+        0.06790775901275978,
+        -0.09737638867583934,
+        -0.04620586757914419,
+        26.702253798355343,
+        -0.015093521425293285,
+        -2.7093584628285643,
+        -0.018524506809855706,
+        -0.013227879506522836,
+        -0.20270797506820037
+Training for 30 rounds...
+Average training score: 118.86666666666666 s.d.: 78.88347291321912
+Testing for 30 rounds...
+Average testing score: 148.2 s.d.: 121.8108765881455
+Training for 30 rounds...
+Average training score: 128.36666666666667 s.d.: 77.28964035203634
+Testing for 30 rounds...
+Average testing score: 168.0 s.d.: 162.4831025697431
+Test average better than best ever training average, swapping weights...
+        -0.3397652455508114,
+        0.037237407436127246,
+        27.74915477671247,
+        0.3678755284547857,
+        -0.036873011040035424,
+        -0.01674585636503722,
+        0.06831167741145722,
+        -0.09834127275095875,
+        -0.04627574331653886,
+        26.78434349784335,
+        -0.015079283478743113,
+        -2.717263657599243,
+        -0.019260937078923096,
+        -0.012662017001998153,
+        -0.20493393851727873
+Training for 30 rounds...
+Average training score: 131.6 s.d.: 99.9750313655951
+Testing for 30 rounds...
+Average testing score: 150.4 s.d.: 123.32586494939837
+Training for 30 rounds...
+Average training score: 192.63333333333333 s.d.: 152.40813701992772
+Testing for 30 rounds...
+Average testing score: 162.7 s.d.: 106.57645790375258
+Training for 30 rounds...
+Average training score: 190.26666666666668 s.d.: 136.49350959265257
+Testing for 30 rounds...
+Average testing score: 177.76666666666668 s.d.: 131.14362574945318
+Training for 30 rounds...
+Average training score: 151.63333333333333 s.d.: 118.80975326657475
+Testing for 30 rounds...
+Average testing score: 280.8666666666667 s.d.: 316.870556261208
+Test average better than best ever training average, swapping weights...
+        -0.34047181903373924,
+        0.03215482030041894,
+        27.970571757796627,
+        0.3701991077041207,
+        -0.035201074822254166,
+        -0.015560746712901505,
+        0.06918740823503033,
+        -0.09919311828845548,
+        -0.047059448354268535,
+        27.005703182024867,
+        -0.014740757603715127,
+        -2.738645051716648,
+        -0.021360572618848786,
+        -0.011717435538178085,
+        -0.20968142255955108
+Training for 30 rounds...
+Average training score: 179.96666666666667 s.d.: 161.2187383935112
+Testing for 30 rounds...
+Average testing score: 235.5 s.d.: 212.41180725672706
+Training for 30 rounds...
+Average training score: 199.06666666666666 s.d.: 123.08055487568191
+Testing for 30 rounds...
+Average testing score: 234.86666666666667 s.d.: 190.77141644736332
+Training for 30 rounds...
+Average training score: 235.96666666666667 s.d.: 183.4467851680856
+Testing for 30 rounds...
+Average testing score: 283.8666666666667 s.d.: 249.15995877642794
+Test average better than best ever training average, swapping weights...
+        -0.33998865130179323,
+        0.027456840523869097,
+        28.195526601235827,
+        0.3717485587464439,
+        -0.0334770794740872,
+        -0.01460567049696156,
+        0.06990636639837135,
+        -0.099978015534153,
+        -0.04787697840072644,
+        27.230554842880967,
+        -0.014381575103057653,
+        -2.760524844607114,
+        -0.02314139555835331,
+        -0.011400581466869075,
+        -0.21351141756297323
+Training for 30 rounds...
+Average training score: 219.66666666666666 s.d.: 263.38163386514117
+Testing for 30 rounds...
+Average testing score: 241.26666666666668 s.d.: 164.49176341046703
+Training for 30 rounds...
+Average training score: 232.86666666666667 s.d.: 174.39248902944487
+Testing for 30 rounds...
+Average testing score: 254.83333333333334 s.d.: 256.45940280550514
+Training for 30 rounds...
+Average training score: 277.6 s.d.: 288.52294476379586
+Testing for 30 rounds...
+Average testing score: 233.6 s.d.: 121.3190720430193
+Training for 30 rounds...
+Average training score: 305.43333333333334 s.d.: 280.22019461713387
+Testing for 30 rounds...
+Average testing score: 296.9 s.d.: 298.15734679574115
+Training for 30 rounds...
+Average training score: 341.2 s.d.: 260.6185480471544
+Testing for 30 rounds...
+Average testing score: 294.6666666666667 s.d.: 174.01070121670975
+Training for 30 rounds...
+Average training score: 370.03333333333336 s.d.: 326.85233229462625
+Testing for 30 rounds...
+Average testing score: 291.1 s.d.: 197.18011195788517
+Training for 30 rounds...
+Average training score: 437.6333333333333 s.d.: 375.3072748758178
+Testing for 30 rounds...
+Average testing score: 316.46666666666664 s.d.: 198.74495294683354
+Training for 30 rounds...
+Average training score: 445.1666666666667 s.d.: 291.9530055869683
+Testing for 30 rounds...
+Average testing score: 555.8 s.d.: 554.6227360200309
+Test average better than best ever training average, swapping weights...
+        -0.3396934366578624,
+        0.011471472423687956,
+        28.689368183926707,
+        0.3747646075055451,
+        -0.02786443461991402,
+        -0.01212303524755444,
+        0.07241911887330336,
+        -0.10213700069877182,
+        -0.04941493171371156,
+        27.723917309916285,
+        -0.013480066883680641,
+        -2.807704461100783,
+        -0.028422450933423462,
+        -0.009871615556192096,
+        -0.22309781857099437
+Training for 30 rounds...
+Average training score: 433.0 s.d.: 345.5993295012653
+Testing for 30 rounds...
+Average testing score: 518.6666666666666 s.d.: 421.97752840969935
+Training for 30 rounds...
+Average training score: 458.4 s.d.: 406.1037407804342
+Testing for 30 rounds...
+Average testing score: 338.96666666666664 s.d.: 191.06808679919172
+Training for 30 rounds...
+Average training score: 709.7 s.d.: 614.5083905602636
+Testing for 30 rounds...
+Average testing score: 636.0666666666667 s.d.: 511.40747637920947
+Training for 30 rounds...
+Average training score: 630.9666666666667 s.d.: 508.36041269497207
+Testing for 30 rounds...
+Average testing score: 849.0 s.d.: 1011.679774195986
+Test average better than best ever training average, swapping weights...
+        -0.33934232917372703,
+        -0.0033543310720869357,
+        28.87504929423476,
+        0.376632374619802,
+        -0.02398013606062164,
+        -0.009651911764463951,
+        0.07428332265258275,
+        -0.10112383777505204,
+        -0.05000730736564929,
+        27.90858614168947,
+        -0.012894719957941836,
+        -2.824629219119336,
+        -0.03255025584390838,
+        -0.009036197866620717,
+        -0.22887826261366845
+Training for 30 rounds...
+Average training score: 630.9333333333333 s.d.: 497.3380820086996
+Testing for 30 rounds...
+Average testing score: 824.7333333333333 s.d.: 963.458630836495
+Training for 30 rounds...
+Average training score: 875.6666666666666 s.d.: 600.1552289621201
+Testing for 30 rounds...
+Average testing score: 908.4666666666667 s.d.: 767.2131086099797
+Test average better than best ever training average, swapping weights...
+        -0.3379948901790538,
+        -0.01398913863990181,
+        28.93754321507982,
+        0.37698361528196095,
+        -0.021592098291879035,
+        -0.008241723713111469,
+        0.07534418126725131,
+        -0.09981095405554005,
+        -0.050098450975793074,
+        27.970753623924068,
+        -0.012728248603736114,
+        -2.829836458295963,
+        -0.034966088381461015,
+        -0.008476488818338429,
+        -0.23160377619420167
+Training for 30 rounds...
+Average training score: 844.2666666666667 s.d.: 633.4897834591545
+Testing for 30 rounds...
+Average testing score: 985.0 s.d.: 1182.4161703901043
+Test average better than best ever training average, swapping weights...
+        -0.33748845050108583,
+        -0.019597718204559023,
+        28.976000906873214,
+        0.3771740748420253,
+        -0.020608964470240444,
+        -0.007396806847246236,
+        0.07588885561394826,
+        -0.09886734078973408,
+        -0.05034392172043892,
+        28.008974668561308,
+        -0.012410303224675484,
+        -2.8331598511701155,
+        -0.03627468693114152,
+        -0.008276115051212434,
+        -0.23315500218996607
+Training for 30 rounds...
+Average training score: 770.2333333333333 s.d.: 881.6541148097249
+Testing for 30 rounds...
+Average testing score: 1539.5333333333333 s.d.: 2245.9485152899947
+Test average better than best ever training average, swapping weights...
+        -0.33699568316565837,
+        -0.025259039353022317,
+        28.973326780824163,
+        0.37721804862273556,
+        -0.01940989276618517,
+        -0.006835613311027071,
+        0.07642724867994968,
+        -0.09774703030436446,
+        -0.05031043413594616,
+        28.00597510252657,
+        -0.012248655061928737,
+        -2.8324684748559785,
+        -0.03745411122031532,
+        -0.008081954830113265,
+        -0.23430682715729562
+Training for 30 rounds...
+Average training score: 1141.2333333333333 s.d.: 1036.601898224337
+Testing for 30 rounds...
+Average testing score: 1744.6666666666667 s.d.: 1932.9825028493765
+Test average better than best ever training average, swapping weights...
+        -0.3361549730397027,
+        -0.033802882465580275,
+        28.96496769278986,
+        0.37732120122347423,
+        -0.017572779114143875,
+        -0.005799870436667138,
+        0.0771876712340439,
+        -0.09588258658376173,
+        -0.050301685103488786,
+        27.99710285552287,
+        -0.012117269409803538,
+        -2.8308127367104055,
+        -0.039207656898826694,
+        -0.007862839381226772,
+        -0.2359273591550907
+Training for 30 rounds...
+Average training score: 645.9666666666667 s.d.: 611.1573240276547
+Testing for 30 rounds...
+Average testing score: 2052.0333333333333 s.d.: 2564.656520884413
+Test average better than best ever training average, swapping weights...
+        -0.3358016406195852,
+        -0.04087377614484833,
+        28.950837527923817,
+        0.37747425813280283,
+        -0.0164206720313914,
+        -0.0047113771613697085,
+        0.07777266330791989,
+        -0.09403676568925803,
+        -0.05032050872096541,
+        27.982675224914743,
+        -0.011892330310204813,
+        -2.8288586090436785,
+        -0.04072562961885007,
+        -0.00760409747787018,
+        -0.2372148153516539
+Training for 30 rounds...
+Average training score: 799.8 s.d.: 638.8314979387137
+Testing for 30 rounds...
+Average testing score: 3352.6666666666665 s.d.: 4274.801080268188
+Test average better than best ever training average, swapping weights...
+        -0.3346240263171721,
+        -0.04880778098990035,
+        28.906317048097545,
+        0.3770137458898734,
+        -0.014801494263186204,
+        -0.003655085191018797,
+        0.07842992825880997,
+        -0.09222307165066213,
+        -0.05009557553733926,
+        27.937832578068818,
+        -0.011878748674381184,
+        -2.8237744458224365,
+        -0.04242024550328097,
+        -0.007323782885476856,
+        -0.23812628162513227
+Training for 30 rounds...
+Average training score: 589.5333333333333 s.d.: 446.5929824280975
+Testing for 30 rounds...
+Average testing score: 3547.766666666667 s.d.: 4285.032682985378
+Test average better than best ever training average, swapping weights...
+        -0.33281750018568695,
+        -0.0609636721239335,
+        28.827638070423045,
+        0.3758872328419206,
+        -0.012236544945659589,
+        -0.0024202856796460784,
+        0.07927035604354755,
+        -0.08872047863957863,
+        -0.0498432306521607,
+        27.858692720708472,
+        -0.011840262704042676,
+        -2.815029483971587,
+        -0.04455161299354074,
+        -0.007140925619889028,
+        -0.23889319928603336
+Training for 30 rounds...
+Average training score: 755.3 s.d.: 808.0888970387116
+Testing for 30 rounds...
+Average testing score: 4172.433333333333 s.d.: 6485.719331333077
+Test average better than best ever training average, swapping weights...
+        -0.3308394030355859,
+        -0.07347194640334997,
+        28.72671372098134,
+        0.3747524760134492,
+        -0.010280251693006724,
+        -9.640550982228779E-4,
+        0.080027205399721,
+        -0.08477879138777974,
+        -0.04952840312680756,
+        27.757227583509497,
+        -0.011819828574718555,
+        -2.8041823438088214,
+        -0.04658284117872306,
+        -0.006898370607286906,
+        -0.2393433435689053
+Training for 30 rounds...
+Average training score: 634.4333333333333 s.d.: 500.0043229698177
+Testing for 30 rounds...
+Average testing score: 3771.133333333333 s.d.: 4596.016098178143
+Training for 30 rounds...
+Average training score: 5089.633333333333 s.d.: 4849.760146812335
+Testing for 30 rounds...
+Average testing score: 9628.666666666666 s.d.: 10205.216376312475
+Test average better than best ever training average, swapping weights...
+        -0.3231253179570191,
+        -0.11066423426755279,
+        28.385253602183365,
+        0.3676127558995246,
+        -0.004008800755447722,
+        0.002872115955423138,
+        0.08197118006239677,
+        -0.07229811023918942,
+        -0.048733024579325296,
+        27.414139491515584,
+        -0.01117911498663196,
+        -2.7675161819937055,
+        -0.05207000201076031,
+        -0.006282459569117689,
+        -0.23676013967514317
+Training for 30 rounds...
+Average training score: 5262.433333333333 s.d.: 6021.473279930713
+Testing for 30 rounds...
+Average testing score: 23889.9 s.d.: 32857.44046336306
+Test average better than best ever training average, swapping weights...
+        -0.31310873637583275,
+        -0.14435561981188894,
+        27.961241379592803,
+        0.3578368729265312,
+        0.0011518523109039537,
+        0.005557120022523412,
+        0.0835447314809317,
+        -0.061230859956564854,
+        -0.04712773666241529,
+        26.98846150571973,
+        -0.01121586999087637,
+        -2.7228141645078248,
+        -0.0560206798245506,
+        -0.005835702322857465,
+        -0.23144112171910997
+Training for 30 rounds...
+Average training score: 3951.633333333333 s.d.: 2828.3166003745096
+Testing for 30 rounds...
+Average testing score: 86854.66666666667 s.d.: 112794.1162382906
+Test average better than best ever training average, swapping weights...
+        -0.2947017047142025,
+        -0.1947344974122318,
+        27.22625191538841,
+        0.33832398871197555,
+        0.009026260754568262,
+        0.009228159513626412,
+        0.08557141999896184,
+        -0.0449281719690032,
+        -0.04390273924115931,
+        26.25070126641283,
+        -0.011311079944160252,
+        -2.645645687919902,
+        -0.06131944334747074,
+        -0.005240671121349643,
+        -0.21852591891433562
+Training for 30 rounds...
+Average training score: 5318.0 s.d.: 4470.403545774024
+Testing for 30 rounds...
+/ 1242285
