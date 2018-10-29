@@ -19,6 +19,7 @@ public class BasisFunction {
 
 	final private static int MAX_HEIGHT						= count++;
 	final private static int COVERED_GAPS					= count++;	//(PD)holes in the tetris wall which are inaccessible from the top
+	final private static int DIFF_LINES_SENT				= count++;	//(ESTR FYP)
 	final private static int DIFF_ROWS_COMPLETED			= count++;	//(LSPI paper)
 	final private static int MAX_MIN_DIFF					= count++;	//(Novel)
 	final private static int MAX_WELL_DEPTH					= count++;	//(Novel)maximum well depth
@@ -28,7 +29,7 @@ public class BasisFunction {
 	final private static int ROW_TRANS						= count++;	//(PD)
 	final private static int DIFF_AVG_HEIGHT				= count++;	//(LSPI paper)
 	final private static int SUM_ADJ_DIFF					= count++;	//(Handout)
-	final private static int DIFF_COVERED_GAPS				= count++;	//(Novel)		
+	final private static int DIFF_COVERED_GAPS				= count++;	//(Novel)
 	final private static int WEIGHTED_WELL_DEPTH			= count++;	//(CF)the deeper the well is, the heavier the "weightage".
 	final private static int LANDING_HEIGHT					= count++;	//(PD)
 	final private static int COL_STD_DEV					= count++;	//(Novel)
@@ -36,6 +37,8 @@ public class BasisFunction {
 //	final private static int WEIGHTED_ERODED_PIECE_CELLS	= count++;	//(PD)
 //	final private static int CENTER_DEV						= count++;	//(PD) priority value used to break tie in PD
 //	final private static int SUM_ADJ_DIFF_SQUARED			= count++;	//(Novel)(sum of the difference between adjacent columns)^2
+	final private static int CONSECUTIVE_HOLES				= count++;	//(ESTR FYP) leave a vertical empty column for I to send 4 lines
+	final private static int DIFF_CONSECUTIVE_HOLES			= count++;	//(ESTR FYP)
 	final public static int FEATURE_COUNT = count;
 
 
@@ -73,9 +76,10 @@ public class BasisFunction {
 				-0.005240305848723416,
 				-0.1524174444288417,
 //				-6.525668167122544E-4,
-//				-8.272234730529223E-4
+//				-8.272234730529223E-4,
+				0.01
+				0.01
 			};
-
 	}*/
 	private double[] features = new double[FEATURE_COUNT]; 
 	private double[] past     = new double[FEATURE_COUNT];
@@ -86,14 +90,16 @@ public class BasisFunction {
 	public double[] getFeatureArray(State s, FutureState fs,int[] move) {
 		//simple features
 		//features[ROWS_COMPLETED] = fs.getRowsCleared();
-		features[DIFF_ROWS_COMPLETED] = fs.getRowsCleared()- s.getRowsCleared();
+		features[DIFF_LINES_SENT] = fs.getLinesSent() - s.getLinesSent();
+		features[DIFF_ROWS_COMPLETED] = fs.getRowsCleared() - s.getRowsCleared();
 		//compute height features
 		int currentTurn = s.getTurnNumber();
 		int currentPiece = s.getNextPiece();
 		heightFeatures(s, past,currentPiece,currentTurn);
 		heightFeatures(fs, features,currentPiece,currentTurn);
-		features[DIFF_AVG_HEIGHT]   = 	features[DIFF_AVG_HEIGHT] - past[DIFF_AVG_HEIGHT];
-		features[DIFF_COVERED_GAPS] =	features[COVERED_GAPS]-past[COVERED_GAPS];
+		features[DIFF_AVG_HEIGHT] 	=		features[DIFF_AVG_HEIGHT] - past[DIFF_AVG_HEIGHT];
+		features[DIFF_COVERED_GAPS] =		features[COVERED_GAPS] - past[COVERED_GAPS];
+		features[DIFF_CONSECUTIVE_HOLES] =	features[CONSECUTIVE_HOLES] - past[CONSECUTIVE_HOLES];
 
 		//features[DIFF_MAX_HEIGHT] = 	features[MAX_HEIGHT]-past[MAX_HEIGHT];
 		//features[DIFF_SUM_ADJ_DIFF] = 	features[SUM_ADJ_DIFF]-past[SUM_ADJ_DIFF];
@@ -105,13 +111,16 @@ public class BasisFunction {
 		return features;
 	}
 
-	public void  cellOperations(int[]top,int[][] field,double[] vals,int turnNo){
-		int rowTrans=0;
-		int colTrans=0;
-		int coveredGaps=0;
+	public void cellOperations(int[]top,int[][] field,double[] vals,int turnNo){
+		int rowTrans = 0;
+		int colTrans = 0;
+		int coveredGaps = 0;
 		int totalBlocks = 0;
 		int currentPieceCells = 0;
+		double conHoles = 0;
+		int numOfHoles, hole = -1, lastHole = -1, consecutiveHoles = 0;
 		for(int i=0;i<State.ROWS-1;i++){
+			numOfHoles = 0;
 			if(field[i][0]==0) rowTrans++;
 			if(field[i][State.COLS-1]==0)rowTrans++;
 			for(int j=0;j<State.COLS;j++){
@@ -119,14 +128,29 @@ public class BasisFunction {
 				if((field[i][j]==0)!=(field[i+1][j]==0))			colTrans++;
 				if(i<top[j] && field[i][j]==0) 						coveredGaps++; 
 				if(field[i][j]!=0) 									totalBlocks++;
+				else{
+					numOfHoles++;
+					hole = j;
+				}
 				if(field[i][j]==turnNo)								currentPieceCells++;
 			}
+			if(numOfHoles==1&&lastHole==-1){
+				lastHole = hole;
+				consecutiveHoles = 1;
+			}
+			else if(numOfHoles==1&&lastHole==hole) consecutiveHoles++;
+			else{
+				lastHole = -1;
+				consecutiveHoles = 0;
+			}
+			conHoles += Math.pow(consecutiveHoles,2);
 		}
 //		vals[ERODED_PIECE_CELLS] = 4 - currentPieceCells;
 		vals[COL_TRANS] = colTrans;
 		vals[ROW_TRANS] = rowTrans;
 		vals[COVERED_GAPS] = coveredGaps;
 		vals[TOTAL_BLOCKS] = totalBlocks;
+		vals[CONSECUTIVE_HOLES] = conHoles;
 	}
 
 	/** 
@@ -140,16 +164,16 @@ public class BasisFunction {
 	public void heightFeatures(State s,double[] vals,int currentPiece,int currentTurn) {
 		int[][] field = s.getField();
 		int[] top = s.getTop();
-		int c = State.COLS-1;
-		double maxWellDepth=0,
-		totalWellDepth=0,
-		totalWeightedWellDepth=0,
-		maxHeight=0,
+		int c = State.COLS - 1;
+		double maxWellDepth = 0,
+		totalWellDepth = 0,
+		totalWeightedWellDepth = 0,
+		maxHeight = 0,
 		minHeight = Integer.MAX_VALUE,
-		total=0,
+		total = 0,
 		totalHeightSquared = 0,
 		diffTotal = 0,
-		squaredDiffTotal=0;
+		squaredDiffTotal = 0;
 		for(int j=0;j<State.COLS;j++){ //by column
 			total += top[j];
 			totalHeightSquared += Math.pow(top[j], 2);	
@@ -178,7 +202,6 @@ public class BasisFunction {
 		vals[MAX_MIN_DIFF] = maxHeight-minHeight;
 		vals[MAX_HEIGHT] = maxHeight;
 		vals[COL_STD_DEV] = (totalHeightSquared - total*((double)total)/State.COLS)/(double)(State.COLS-1);
-		//System.out.println(colTrans);
 	}
 
 
@@ -208,7 +231,8 @@ public class BasisFunction {
 		Matrix.sum(mRowFeatures, mFutureFeatures);
 		Matrix.product(mFeatures,mRowFeatures,changeToA);
 		Matrix.sum(A,changeToA);
-		Matrix.multiply(features[DIFF_ROWS_COMPLETED], mFeatures);
+		Matrix.multiply(features[DIFF_LINES_SENT], mFeatures);
+//		Matrix.multiply(features[DIFF_ROWS_COMPLETED], mFeatures);
 		Matrix.sum(b,mFeatures);
 	}
 
@@ -221,7 +245,7 @@ public class BasisFunction {
 	 * This saves computing inverse of A and then multiplying it with b.
 	 */
 	public void computeWeights() {
-		if(Matrix.premultiplyInverse(A, b,mWeight, tmpA)==null) return;;
+		if(Matrix.premultiplyInverse(A, b, mWeight, tmpA)==null) return;;
 		Matrix.colToArray(mWeight, weight);
 		//printField(mWeight);
 	}
