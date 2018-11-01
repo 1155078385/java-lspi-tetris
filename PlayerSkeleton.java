@@ -112,9 +112,12 @@ public class PlayerSkeleton {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			System.out.println(s.getLinesSent());
 			//BasisFunction.computeWeights();
 		}
-		System.out.println(s.getRowsCleared());
+		System.out.print(s.getTotalLinesSent());
+		System.out.print("/");
+		System.out.println(s.getTurnNumber());
 	}
 
 }

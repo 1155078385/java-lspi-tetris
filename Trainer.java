@@ -10,13 +10,15 @@ public class Trainer {
 	private static int SPIN_STEP_DELAY = 2500;
 	
 	public static void main(String[] args) throws IOException {
-		PlayerSkeleton player = new PlayerSkeleton();
-		player.learns = true;
-		State s;
-		TFrame frame = null;
+		PlayerSkeleton p1 = new PlayerSkeleton();
+		p1.learns = true;
+		PlayerSkeleton p2 = new PlayerSkeleton();
+		State s1, s2;
+		TFrame frame1 = null;
+		TFrame frame2 = null;
 		double[] weights = new double[BasisFunction.FEATURE_COUNT];
-		BasisFunction bf = player.getBasisFunctions();
-		double[] defWeights  = bf.weight;
+		BasisFunction bf1 = p1.getBasisFunctions();
+		double[] defWeights  = bf1.weight;
 		double[] initialWeights = new double[BasisFunction.FEATURE_COUNT];
 		System.arraycopy(defWeights, 0,weights, 0, BasisFunction.FEATURE_COUNT);
 		String score = "";
@@ -33,11 +35,17 @@ public class Trainer {
 			double totalTSSquared = 0;
 			for(int i=0;i<ROUNDS;i++){
 
-				s = new State();
-				if(frame==null) frame = new TFrame(s);
-				else frame.bindState(s);
-				playGame(s,player,score,i);
-				double sent = ((double)s.getLinesSent()/s.getTurnNumber());
+				s1 = new State();
+				s2 = new State();
+				if(frame1==null) frame1 = new TFrame(s1);
+				else frame1.bindState(s1);
+				if(frame2==null) frame2 = new TFrame(s2);
+				else frame2.bindState(s2);
+				playGame(s1,p1,score,i);
+				s2.addLineStack(s1.getLinesSent());
+				playGame(s2,p2,score,i);
+				s1.addLineStack(s2.getLinesSent());
+				double sent = ((double)s1.getTotalLinesSent()/s1.getTurnNumber());
 				
 				totalTrainingScore = totalTrainingScore + sent;
 				totalTSSquared = totalTSSquared + (double)Math.pow(sent, 2);
@@ -62,7 +70,7 @@ public class Trainer {
 			
 			if(avg>bestAvg) bestAvg = avg;
 			
-			bf.computeWeights();
+			bf1.computeWeights();
 			for(int i=0;i<weights.length;i++) {
 				weights[i] = 0.1 * weights[i] + 0.9 * defWeights[i];
 				weights[i] = 0.001 * (weights[i]*(0.5 - Math.random()));
@@ -73,10 +81,15 @@ public class Trainer {
 			double totalTSquared = 0;
 			prevLength = 0;
 			for(int i=0;i<ROUNDS;i++){
-				s = new State();
-				frame.bindState(s);
-				playGame(s,player,score,i);
-				double sent = ((double)s.getLinesSent()/s.getTurnNumber());
+				s1 = new State();
+				s2 = new State();
+				frame1.bindState(s1);
+				frame2.bindState(s2);
+				playGame(s1,p1,score,i);
+				s2.addLineStack(s1.getLinesSent());
+				playGame(s2,p2,score,i);
+				s1.addLineStack(s2.getLinesSent());
+				double sent = ((double)s1.getTotalLinesSent()/s1.getTurnNumber());
 				totalTestingScore += sent;
 				totalTSquared += Math.pow(sent,2);
 				score = Double.toString(sent);

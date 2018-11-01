@@ -57,30 +57,29 @@ public class BasisFunction {
 	double[] weight = new double[FEATURE_COUNT];
 	
 
-	/*
+	
 	{
 		weight = new double[] {
-				-0.180164448251231,
-				-0.4000820857296077,
-				24.77849828060256,
-				0.2064192581442733,
-				0.045032898990512216,
-				0.021320544290795714,
-				0.08917677230797055,
-				0.00819042152617841,
-				-0.03390773883019901,
-				23.781352321845173,
-				-0.010694297443763184,
-				-2.3906661321409253,
-				-0.08863636063644799,
-				-0.005240305848723416,
-				-0.1524174444288417,
-//				-6.525668167122544E-4,
-//				-8.272234730529223E-4,
-				0.01
-				0.01
+				-0.15395359119576313,
+				-0.43763119760851465,
+				1.5041969548020226,
+				21.37603768110211,
+				0.18354674523294526,
+				0.0014507362660180437,
+				-0.006809480723597665,
+				0.0894971271908241,
+				-0.0729413434684274,
+				-0.05049095146579233,
+				21.587317326606083,
+				-0.047530967904395885,
+				-2.3161971727054764,
+				0.005496406352039129,
+				-0.009929542346997436,
+				-0.18942064251615895,
+				1.1939817755112023E-4,
+				-0.005031622506890358
 			};
-	}*/
+	}
 	private double[] features = new double[FEATURE_COUNT]; 
 	private double[] past     = new double[FEATURE_COUNT];
 
@@ -90,7 +89,7 @@ public class BasisFunction {
 	public double[] getFeatureArray(State s, FutureState fs,int[] move) {
 		//simple features
 		//features[ROWS_COMPLETED] = fs.getRowsCleared();
-		features[DIFF_LINES_SENT] = fs.getLinesSent() - s.getLinesSent();
+		features[DIFF_LINES_SENT] = fs.getLinesSent();
 		features[DIFF_ROWS_COMPLETED] = fs.getRowsCleared() - s.getRowsCleared();
 		//compute height features
 		int currentTurn = s.getTurnNumber();
@@ -143,7 +142,8 @@ public class BasisFunction {
 				lastHole = -1;
 				consecutiveHoles = 0;
 			}
-			conHoles += Math.pow(consecutiveHoles,2);
+			if(consecutiveHoles>1&&consecutiveHoles<4) conHoles = Math.pow(consecutiveHoles,2);
+			else conHoles = 0;
 		}
 //		vals[ERODED_PIECE_CELLS] = 4 - currentPieceCells;
 		vals[COL_TRANS] = colTrans;

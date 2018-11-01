@@ -83,6 +83,7 @@ public class FutureState extends State{
 	
 	// calculate lines sent
 	public void calLinesSent(int rowsCleared) {
+		sent = 0;
 		if (rowsCleared == 0) {
 			combo = 0;
 			lastCleared = false;
@@ -202,9 +203,6 @@ public class FutureState extends State{
 		calLinesSent(rowsCleared);
 		return true;
 	}
-
-
-
 
 }
 

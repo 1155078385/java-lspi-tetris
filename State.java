@@ -188,6 +188,10 @@ public class State {
 		return totalSent;
 	}
 	
+	public int addLineStack(int linesSent) {
+		lineStack += linesSent;
+	}
+	
 	
 	
 	//constructor
@@ -217,8 +221,21 @@ public class State {
 		return bag[bag_index++];
 	}
 	
+	public void addLines() {
+		Random rand = new Random();
+		int hole = rand.nextInt(COLS);
+		for (int i = ROWS-1; i >= 0; i--) {
+			for (int j = 0; j < COLS; j++) {
+				if (i < lineStack) field[i][j] = (j==hole?0:1);
+				else field[i][j] = field[i-lineStack][j];
+			}
+		}
+		lineStack = 0;
+	}
+	
 	// calculate lines sent
 	public void calLinesSent(int rowsCleared) {
+		sent = 0;
 		if (rowsCleared == 0) {
 			combo = 0;
 			lastCleared = false;
@@ -338,9 +355,15 @@ public class State {
 				}
 			}
 		}
-		
 		calLinesSent(rowsCleared);
-	
+		if(sent < lineStack) {
+			lineStack -= sent;
+			addLines();
+		}
+		else {
+			sent -= lineStack;
+			lineStack = 0;
+		}
 
 		//pick a new piece
 		nextPiece = randomPiece();
