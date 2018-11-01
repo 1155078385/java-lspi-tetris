@@ -38,6 +38,21 @@ public class TFrame extends JFrame implements KeyListener{
 		setVisible(true);
 	}
 	
+	public TFrame (State s, String title){
+		this.s = s;
+		s.label = label;
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);            // closes all windows when this is closed
+		setTitle(title);
+		setContentPane(label.draw);
+		pack();
+		label.BORDER = .05;
+		label.setXscale(0, State.COLS);
+		label.setYscale(0, State.ROWS+5);
+		this.addKeyListener(this);  //may be unnecessary (not certain)
+		setVisible(true);
+	}
+	
 	//switches which state is attached to this TFrame
 	public void bindState(State s) {
 		if(s!= null)	s.label = null;

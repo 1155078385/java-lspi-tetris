@@ -22,7 +22,7 @@ public class Trainer {
 		BasisFunction bf1 = p1.getBasisFunctions();
 		double[] defWeights  = bf1.weight;
 		double[] initialWeights = new double[BasisFunction.FEATURE_COUNT];
-		System.arraycopy(defWeights, 0,weights, 0, BasisFunction.FEATURE_COUNT);
+		System.arraycopy(defWeights, 0, weights, 0, BasisFunction.FEATURE_COUNT);
 		String score = "";
 		double bestAvg = 0;
 
@@ -30,7 +30,7 @@ public class Trainer {
 		while(true) {
 			int prevLength = 0;
 			
-			System.arraycopy(weights, 0,defWeights, 0, BasisFunction.FEATURE_COUNT);
+			System.arraycopy(weights, 0, defWeights, 0, BasisFunction.FEATURE_COUNT);
 			System.arraycopy(initialWeights, 0, defWeights, 0, BasisFunction.FEATURE_COUNT);
 			System.out.println("Training for " + ROUNDS + " rounds...");
 			double totalTrainingScore = 0;
@@ -41,9 +41,9 @@ public class Trainer {
 				s2 = new State();
 				s1.doublePlayer = true;
 				s2.doublePlayer = true;
-				if(frame1==null) frame1 = new TFrame(s1);
+				if(frame1==null) frame1 = new TFrame(s1,"Player 1");
 				else frame1.bindState(s1);
-				if(frame2==null) frame2 = new TFrame(s2);
+				if(frame2==null) frame2 = new TFrame(s2,"Player 2");
 				else frame2.bindState(s2);
 				playGame(s1,p1,s2,p2,score,i);
 				double sent = ((double)s1.getTotalLinesSent()/s1.getTurnNumber());
@@ -130,7 +130,6 @@ public class Trainer {
 	}
 	
 	private static char[] rotating = new char[] {'-','\\','|','/'};
-	private static Writer out = null;
 	private static void playGame(State s1, PlayerSkeleton p1, State s2, PlayerSkeleton p2, String prevScore, int round) {
 		int i = 0;
 		int spin = 0;

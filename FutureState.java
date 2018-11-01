@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class FutureState extends State{
 
@@ -62,6 +63,10 @@ public class FutureState extends State{
 		return totalSent;
 	}
 	
+	public void addlinesStack(int linesSent) {
+		linesStack += linesSent;
+	}
+	
 	void resetToCurrentState(State s) {
 		int[][] field = s.getField();
 		this.nextPiece = s.getNextPiece();
@@ -81,8 +86,31 @@ public class FutureState extends State{
 		}
 	}
 	
+	// add lines stack to field
+	private boolean addLines() {
+		for (int i = ROWS-2; i > ROWS-2-linesStack; i--) {
+			for (int j = 0; j < COLS; j++) {
+				if (field[i][j] != 0) {
+					lost = true;
+					return false;
+				}
+			}
+		}
+		Random rand = new Random();
+		int hole = rand.nextInt(COLS);
+		for (int i = ROWS-1; i >= 0; i--) {
+			for (int j = 0; j < COLS; j++) {
+				if (i < linesStack) field[i][j] = (j==hole?0:turn);
+				else field[i][j] = field[i-linesStack][j];
+			}
+		}
+		for (int i = 0; i < COLS; i++) top[i] += linesStack;
+		linesStack = 0;
+		return true;
+	}
+	
 	// calculate lines sent
-	public void calLinesSent(int rowsCleared) {
+	private void calLinesSent(int rowsCleared) {
 		sent = 0;
 		if (rowsCleared == 0) {
 			combo = 0;
@@ -200,8 +228,17 @@ public class FutureState extends State{
 				}
 			}
 		}
+		boolean valid = true;
 		calLinesSent(rowsCleared);
-		return true;
+		if(sent < linesStack) {
+			linesStack -= sent;
+			valid = addLines();
+		}
+		else {
+			sent -= linesStack;
+			linesStack = 0;
+		}
+		return valid;
 	}
 
 }

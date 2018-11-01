@@ -152,8 +152,8 @@ public class State {
 		return nextPiece;
 	}
 	
-	public void setNextPiece(int piece) {
-		nextPiece = piece;
+	public void setNextPiece(int nextPiece) {
+		this.nextPiece = nextPiece;
 	}
 	
 	public boolean hasLost() {
@@ -225,7 +225,8 @@ public class State {
 		return bag[bag_index++];
 	}
 	
-	public boolean addLines() {
+	// add lines stack to field
+	private boolean addLines() {
 		for (int i = ROWS-2; i > ROWS-2-linesStack; i--) {
 			for (int j = 0; j < COLS; j++) {
 				if (field[i][j] != 0) {
@@ -248,7 +249,7 @@ public class State {
 	}
 	
 	// calculate lines sent
-	public void calLinesSent(int rowsCleared) {
+	private void calLinesSent(int rowsCleared) {
 		sent = 0;
 		if (rowsCleared == 0) {
 			combo = 0;
