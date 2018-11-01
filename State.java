@@ -12,7 +12,7 @@ public class State {
 
 	public boolean lost = false;
 	
-	
+	public boolean doublePlayer = false;
 	
 
 	
@@ -152,6 +152,10 @@ public class State {
 		return nextPiece;
 	}
 	
+	public void setNextPiece(int piece) {
+		nextPiece = piece;
+	}
+	
 	public boolean hasLost() {
 		return lost;
 	}
@@ -188,8 +192,8 @@ public class State {
 		return totalSent;
 	}
 	
-	public int addLineStack(int linesSent) {
-		lineStack += linesSent;
+	public void addlinesStack(int linesSent) {
+		linesStack += linesSent;
 	}
 	
 	
@@ -221,16 +225,26 @@ public class State {
 		return bag[bag_index++];
 	}
 	
-	public void addLines() {
+	public boolean addLines() {
+		for (int i = ROWS-2; i > ROWS-2-linesStack; i--) {
+			for (int j = 0; j < COLS; j++) {
+				if (field[i][j] != 0) {
+					lost = true;
+					return false;
+				}
+			}
+		}
 		Random rand = new Random();
 		int hole = rand.nextInt(COLS);
 		for (int i = ROWS-1; i >= 0; i--) {
 			for (int j = 0; j < COLS; j++) {
-				if (i < lineStack) field[i][j] = (j==hole?0:1);
-				else field[i][j] = field[i-lineStack][j];
+				if (i < linesStack) field[i][j] = (j==hole?0:turn);
+				else field[i][j] = field[i-linesStack][j];
 			}
 		}
-		lineStack = 0;
+		for (int i = 0; i < COLS; i++) top[i] += linesStack;
+		linesStack = 0;
+		return true;
 	}
 	
 	// calculate lines sent
@@ -355,22 +369,25 @@ public class State {
 				}
 			}
 		}
+		
+		boolean valid = true;
 		calLinesSent(rowsCleared);
-		if(sent < lineStack) {
-			lineStack -= sent;
-			addLines();
+		if(sent < linesStack) {
+			linesStack -= sent;
+			valid = addLines();
 		}
 		else {
-			sent -= lineStack;
-			lineStack = 0;
+			sent -= linesStack;
+			linesStack = 0;
 		}
 
 		//pick a new piece
-		nextPiece = randomPiece();
+		if (doublePlayer == false)
+			nextPiece = randomPiece();
 		
 
 		
-		return true;
+		return valid;
 	}
 	
 	public void draw() {

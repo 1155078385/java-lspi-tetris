@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.Arrays;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Trainer {
 	private static int ROUNDS = 30;
@@ -37,14 +39,13 @@ public class Trainer {
 
 				s1 = new State();
 				s2 = new State();
+				s1.doublePlayer = true;
+				s2.doublePlayer = true;
 				if(frame1==null) frame1 = new TFrame(s1);
 				else frame1.bindState(s1);
 				if(frame2==null) frame2 = new TFrame(s2);
 				else frame2.bindState(s2);
-				playGame(s1,p1,score,i);
-				s2.addLineStack(s1.getLinesSent());
-				playGame(s2,p2,score,i);
-				s1.addLineStack(s2.getLinesSent());
+				playGame(s1,p1,s2,p2,score,i);
 				double sent = ((double)s1.getTotalLinesSent()/s1.getTurnNumber());
 				
 				totalTrainingScore = totalTrainingScore + sent;
@@ -83,12 +84,11 @@ public class Trainer {
 			for(int i=0;i<ROUNDS;i++){
 				s1 = new State();
 				s2 = new State();
+				s1.doublePlayer = true;
+				s2.doublePlayer = true;
 				frame1.bindState(s1);
 				frame2.bindState(s2);
-				playGame(s1,p1,score,i);
-				s2.addLineStack(s1.getLinesSent());
-				playGame(s2,p2,score,i);
-				s1.addLineStack(s2.getLinesSent());
+				playGame(s1,p1,s2,p2,score,i);
 				double sent = ((double)s1.getTotalLinesSent()/s1.getTurnNumber());
 				totalTestingScore += sent;
 				totalTSquared += Math.pow(sent,2);
@@ -131,16 +131,47 @@ public class Trainer {
 	
 	private static char[] rotating = new char[] {'-','\\','|','/'};
 	private static Writer out = null;
-	private static void playGame(State s,PlayerSkeleton player,String prevScore, int round) throws IOException {
-		if(out==null) out = new PrintWriter(new File("scores.log"));
+	private static void playGame(State s1, PlayerSkeleton p1, State s2, PlayerSkeleton p2, String prevScore, int round) {
 		int i = 0;
 		int spin = 0;
-		while(!s.hasLost()){
-			s.makeMove(player.pickMove(s, s.legalMoves()));
+		int[] bag = {0, 1, 2, 3, 4, 5, 6};
+		int bag_index = 7;
+		while(!s1.hasLost()&&!s2.hasLost()){
+			if (bag_index < 0 || bag_index > 6) {
+				Random rnd = ThreadLocalRandom.current();
+				for (int k = bag.length - 1; k > 0; k--) {
+					int index = rnd.nextInt(k + 1);
+					// Simple swap
+					int tmp = bag[index];
+					bag[index] = bag[k];
+					bag[k] = tmp;
+				}
+				bag_index = 0;
+			}
+			int nextPiece = bag[bag_index++];
+			s1.setNextPiece(nextPiece);
+			s2.setNextPiece(nextPiece);
+
+			s1.makeMove(p1.pickMove(s1, s1.legalMoves()));
+			s2.addlinesStack(s1.getLinesSent());
+			s1.draw();
+			s1.drawNext(0,0);
+			s2.draw();
+			s2.drawNext(0,0);
+			String input1 = System.console().readLine();
+			if (!s2.hasLost()) {
+				s2.makeMove(p2.pickMove(s2, s2.legalMoves()));
+				s1.addlinesStack(s2.getLinesSent());
+				s1.draw();
+				s1.drawNext(0,0);
+				s2.draw();
+				s2.drawNext(0,0);
+				String input2 = System.console().readLine();
+			}
 			if(i == SPIN_STEP_DELAY) {
 				System.out.print("\r");
 				System.out.print(rotating[spin]);
-				System.out.print(" Round");
+				System.out.print(" Round ");
 				System.out.print(round);
 				System.out.print(": ");
 				System.out.print(prevScore);
@@ -149,11 +180,10 @@ public class Trainer {
 			}
 			i++;
 		}
-		out.write(Integer.toString(s.getLinesSent()));
-		out.write('\n');
-		out.flush();
-		s.draw();
-		s.drawNext(0,0);
+		s1.draw();
+		s1.drawNext(0,0);
+		s2.draw();
+		s2.drawNext(0,0);
 	}
 
 	private static void drawBoard(State s, TFrame t) {
