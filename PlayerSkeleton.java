@@ -12,7 +12,7 @@ public class PlayerSkeleton {
 
 	private double[] feature = new double[BasisFunction.FEATURE_COUNT];
 	private double[] past = null;
-	private BasisFunction bs = new BasisFunction();
+	protected BasisFunction bs = new BasisFunction();
 	protected boolean learns = false;
 
 	int count = 0;

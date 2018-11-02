@@ -18,20 +18,13 @@ public class Trainer {
 		State s1, s2;
 		TFrame frame1 = null;
 		TFrame frame2 = null;
-		double[] weights = new double[BasisFunction.FEATURE_COUNT];
 		BasisFunction bf1 = p1.getBasisFunctions();
-		double[] defWeights  = bf1.weight;
-		double[] initialWeights = new double[BasisFunction.FEATURE_COUNT];
-		System.arraycopy(defWeights, 0, weights, 0, BasisFunction.FEATURE_COUNT);
 		String score = "";
-		double bestAvg = 0;
 
 		// keep on training!
 		while(true) {
 			int prevLength = 0;
 			
-			System.arraycopy(weights, 0, defWeights, 0, BasisFunction.FEATURE_COUNT);
-			System.arraycopy(initialWeights, 0, defWeights, 0, BasisFunction.FEATURE_COUNT);
 			System.out.println("Training for " + ROUNDS + " rounds...");
 			double totalTrainingScore = 0;
 			double totalTSSquared = 0;
@@ -65,57 +58,13 @@ public class Trainer {
 			System.out.print(avg);
 			System.out.print(" s.d.: ");
 			System.out.print(sd);
-			
-			
 			System.out.println();
-			
-			if(avg>bestAvg) bestAvg = avg;
 			
 			bf1.computeWeights();
-			for(int i=0;i<weights.length;i++) {
-				weights[i] = 0.1 * weights[i] + 0.9 * defWeights[i];
-				weights[i] = 0.001 * (weights[i]*(0.5 - Math.random()));
-			}
-			//System.out.println("Weights:"+Arrays.toString(bf.weight));
-			System.out.println("Testing for "+ROUNDS+" rounds...");
-			double totalTestingScore = 0;
-			double totalTSquared = 0;
-			prevLength = 0;
-			for(int i=0;i<ROUNDS;i++){
-				s1 = new State();
-				s2 = new State();
-				s1.doublePlayer = true;
-				s2.doublePlayer = true;
-				frame1.bindState(s1);
-				frame2.bindState(s2);
-				playGame(s1,p1,s2,p2,score,i);
-				double sent = ((double)s1.getTotalLinesSent()/s1.getTurnNumber());
-				totalTestingScore += sent;
-				totalTSquared += Math.pow(sent,2);
-				score = Double.toString(sent);
-				System.out.print("\r  ");
-				System.out.print(score);
-				for(int j=0;j<=prevLength-score.length();j++) System.out.print(' ');
-				prevLength = score.length();
-			}
-			double testAvg = ((double)totalTestingScore/ROUNDS);
-			double testSd = (double)Math.sqrt((totalTSquared - totalTestingScore*avg)/(ROUNDS-1));
-			System.out.print("\rAverage testing score: ");
-			System.out.print(testAvg);
-			System.out.print(" s.d.: ");
-			System.out.print(testSd);
-			System.out.println();
-			
-			if(testAvg > bestAvg) {
-				bestAvg = testAvg;
-				System.out.println("Test average better than best ever training average, swapping weights...");
-			
-				System.arraycopy(defWeights, 0, weights, 0, BasisFunction.FEATURE_COUNT);
-				doNewWeightActions(weights);
-			} else {
-				System.arraycopy(defWeights, 0, initialWeights, 0, BasisFunction.FEATURE_COUNT);
-			}
-			
+			//for(int i=0;i<weights.length;i++) {
+			//	weights[i] = 0.1 * weights[i] + 0.9 * defWeights[i];
+			//	weights[i] = 0.001 * (weights[i]*(0.5 - Math.random()));
+			//}
 		}
 	}
 	
