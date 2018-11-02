@@ -38,6 +38,7 @@ public class TFrame extends JFrame implements KeyListener{
 		setVisible(true);
 	}
 	
+	//constructor with title
 	public TFrame (State s, String title){
 		this.s = s;
 		s.label = label;
