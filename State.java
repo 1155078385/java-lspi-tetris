@@ -127,25 +127,25 @@ public class State {
 		return top;
 	}
 
-    public static int[] getpOrients() {
-        return pOrients;
-    }
-    
-    public static int[][] getpWidth() {
-        return pWidth;
-    }
+	public static int[] getpOrients() {
+		return pOrients;
+	}
+	
+	public static int[][] getpWidth() {
+		return pWidth;
+	}
 
-    public static int[][] getpHeight() {
-        return pHeight;
-    }
+	public static int[][] getpHeight() {
+		return pHeight;
+	}
 
-    public static int[][][] getpBottom() {
-        return pBottom;
-    }
+	public static int[][][] getpBottom() {
+		return pBottom;
+	}
 
-    public static int[][][] getpTop() {
-        return pTop;
-    }
+	public static int[][][] getpTop() {
+		return pTop;
+	}
 
 
 	public int getNextPiece() {
@@ -227,6 +227,7 @@ public class State {
 	
 	// add lines stack to field
 	private boolean addLines() {
+		// check if game end
 		for (int i = ROWS-2; i > ROWS-2-linesStack; i--) {
 			for (int j = 0; j < COLS; j++) {
 				if (field[i][j] != 0) {
@@ -445,9 +446,6 @@ public class State {
 		label.line(COLS, 0, COLS, ROWS+5);
 	}
 	
-
-	
-
 }
 
 

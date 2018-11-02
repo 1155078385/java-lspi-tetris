@@ -15,6 +15,7 @@ public class Trainer {
 		PlayerSkeleton p1 = new PlayerSkeleton();
 		p1.learns = true;
 		PlayerSkeleton p2 = new PlayerSkeleton();
+		//p2.learns = true;
 		State s1, s2;
 		TFrame frame1 = null;
 		TFrame frame2 = null;

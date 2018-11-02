@@ -88,6 +88,7 @@ public class FutureState extends State{
 	
 	// add lines stack to field
 	private boolean addLines() {
+		// check if game end
 		for (int i = ROWS-2; i > ROWS-2-linesStack; i--) {
 			for (int j = 0; j < COLS; j++) {
 				if (field[i][j] != 0) {
