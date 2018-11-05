@@ -89,7 +89,7 @@ public class FutureState extends State{
 	// add lines stack to field
 	private boolean addLines() {
 		// check if game end
-		for (int i = ROWS-2; i > ROWS-2-linesStack; i--) {
+		for (int i = ROWS-1; i > ROWS-1-linesStack; i--) {
 			for (int j = 0; j < COLS; j++) {
 				if (field[i][j] != 0) {
 					lost = true;
@@ -180,7 +180,7 @@ public class FutureState extends State{
 		}
 
 		//check if game ended
-		if(height+pHeight[nextPiece][orient] >= ROWS) {
+		if(height+pHeight[nextPiece][orient] >= 20) {
 			lost = true;
 			return false;
 		}
@@ -201,7 +201,6 @@ public class FutureState extends State{
 		}
 
 		int rowsCleared = 0;
-
 		//check for full rows - starting at the top
 		for(int r = height+pHeight[nextPiece][orient]-1; r >= height; r--) {
 			//check all columns in the row
@@ -218,7 +217,6 @@ public class FutureState extends State{
 				cleared++;
 				//for each column
 				for(int c = 0; c < COLS; c++) {
-
 					//slide down all bricks
 					for(int i = r; i < top[c]; i++) {
 						field[i][c] = field[i+1][c];
