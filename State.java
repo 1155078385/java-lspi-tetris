@@ -201,7 +201,6 @@ public class State {
 	//constructor
 	public State() {
 		nextPiece = randomPiece();
-
 	}
 	
 	// random shuffle bag

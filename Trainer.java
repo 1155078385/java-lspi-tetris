@@ -19,18 +19,20 @@ public class Trainer {
 		State s1, s2;
 		TFrame frame1 = null;
 		TFrame frame2 = null;
-		BasisFunction bf1 = p1.getBasisFunctions();
+		TwoPlayerBasisFunction bf1 = p1.getTwoPlayerBasisFunctions();
+		TwoPlayerBasisFunction bf2 = p2.getTwoPlayerBasisFunctions();
 		String score = "";
+		int consecutive_all_wins = 0;
 
 		// keep on training!
 		while(true) {
+			int p1wins = 0;
+			int draw = 0;
+			int p2wins = 0;
 			int prevLength = 0;
 			
 			System.out.println("Training for " + ROUNDS + " rounds...");
-			double totalTrainingScore = 0;
-			double totalTSSquared = 0;
 			for(int i=0;i<ROUNDS;i++){
-
 				s1 = new State();
 				s2 = new State();
 				s1.doublePlayer = true;
@@ -40,26 +42,32 @@ public class Trainer {
 				if(frame2==null) frame2 = new TFrame(s2,"Player 2");
 				else frame2.bindState(s2);
 				playGame(s1,p1,s2,p2,score,i);
+				if(s1.hasLost()&&!s2.hasLost()) p2wins++;
+				else if(!s1.hasLost()&&s2.hasLost()) p1wins++;
+				else draw++;
+				
 				double sent = ((double)s1.getTotalLinesSent()/s1.getTurnNumber());
-				
-				totalTrainingScore = totalTrainingScore + sent;
-				totalTSSquared = totalTSSquared + (double)Math.pow(sent, 2);
-				
 				score = Double.toString(sent);
 				System.out.print("\r  ");
 				System.out.print(score);
 				for(int j=0;j<=prevLength-score.length();j++) System.out.print(' ');
 				prevLength = score.length();
-
 			}
-			
-			double avg = (totalTrainingScore/(double)ROUNDS);
-			double sd = (double)Math.sqrt((totalTSSquared - totalTrainingScore*avg)/(ROUNDS-1));
-			System.out.print("\rAverage training score: ");
-			System.out.print(avg);
-			System.out.print(" s.d.: ");
-			System.out.print(sd);
-			System.out.println();
+			System.out.print("\r\nP1 wins: ");
+			System.out.println(p1wins);
+			System.out.print("P2 wins: ");
+			System.out.println(p2wins);
+			System.out.print("Draw: ");
+			System.out.println(draw);
+			if(p1wins == ROUNDS) consecutive_all_wins++;
+			else consecutive_all_wins = 0;
+			if(consecutive_all_wins == 5) {
+				// copy weight
+				for(int i = 0; i < bf2.weight.length; i++) {
+					System.out.println(bf1.weight[i]);
+					bf2.weight[i] = bf1.weight[i];
+				}
+			}
 			
 			bf1.computeWeights();
 			//for(int i=0;i<weights.length;i++) {
@@ -76,7 +84,6 @@ public class Trainer {
 			System.out.print(weights[i]);
 		}
 		System.out.println();
-
 	}
 	
 	private static char[] rotating = new char[] {'-','\\','|','/'};
@@ -101,21 +108,21 @@ public class Trainer {
 			s1.setNextPiece(nextPiece);
 			s2.setNextPiece(nextPiece);
 
-			s1.makeMove(p1.pickMove(s1, s1.legalMoves()));
+			s1.makeMove(p1.pickMove(s1, s2, s1.legalMoves()));
 			s2.addlinesStack(s1.getLinesSent());
-			s1.draw();
-			s1.drawNext(0,0);
-			s2.draw();
-			s2.drawNext(0,0);
-			String input1 = System.console().readLine();
+			//s1.draw();
+			//s1.drawNext(0,0);
+			//s2.draw();
+			//s2.drawNext(0,0);
+			//String input1 = System.console().readLine();
 			if (!s2.hasLost()) {
-				s2.makeMove(p2.pickMove(s2, s2.legalMoves()));
+				s2.makeMove(p2.pickMove(s2, s1, s2.legalMoves()));
 				s1.addlinesStack(s2.getLinesSent());
-				s1.draw();
-				s1.drawNext(0,0);
-				s2.draw();
-				s2.drawNext(0,0);
-				String input2 = System.console().readLine();
+				//s1.draw();
+				//s1.drawNext(0,0);
+				//s2.draw();
+				//s2.drawNext(0,0);
+				//String input2 = System.console().readLine();
 			}
 			if(i == SPIN_STEP_DELAY) {
 				System.out.print("\r");

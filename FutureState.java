@@ -63,7 +63,7 @@ public class FutureState extends State{
 		return totalSent;
 	}
 	
-	public void addlinesStack(int linesSent) {
+	public void addLinesStack(int linesSent) {
 		linesStack += linesSent;
 	}
 	
