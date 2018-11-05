@@ -59,7 +59,7 @@ public class Trainer {
 			System.out.println(p2wins);
 			System.out.print("Draw: ");
 			System.out.println(draw);
-			if(p1wins == ROUNDS) consecutive_all_wins++;
+			if(p1wins >= ROUNDS*9/10) consecutive_all_wins++;
 			else consecutive_all_wins = 0;
 			if(consecutive_all_wins == 5) {
 				// copy weight
