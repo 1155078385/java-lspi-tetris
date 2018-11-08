@@ -1,3 +1,5 @@
+package edu.cuhk.cse.fyp.tetrisai.lspi;
+
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -87,7 +89,7 @@ public class TFrame extends JFrame implements KeyListener{
 						break;
 					}
 					case(KeyEvent.VK_DOWN): {
-						if(!s.makeMove(orient, slot))	mode = NONE;
+						if(!s.makeMove(orient, slot, s.nextPiece))	mode = NONE;
 						if(orient >= State.pOrients[s.nextPiece])	orient = 0;
 						if(slot > State.COLS-State.pWidth[s.nextPiece][orient])
 							slot = State.COLS-State.pWidth[s.nextPiece][orient];

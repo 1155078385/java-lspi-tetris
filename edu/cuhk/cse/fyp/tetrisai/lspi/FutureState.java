@@ -1,3 +1,5 @@
+package edu.cuhk.cse.fyp.tetrisai.lspi;
+
 import java.util.Arrays;
 import java.util.Random;
 
@@ -21,7 +23,9 @@ public class FutureState extends State{
 	private int combo = 0;
 	private int linesStack = 0;
 	private int totalSent = 0;
+	private int hold = -1;
 
+	protected static int[][][] legalMoves = new int[N_PIECES][][];
 
 	public int[][] getField() {
 		return field;
@@ -63,6 +67,10 @@ public class FutureState extends State{
 		return totalSent;
 	}
 	
+	public int getHold() {
+		return hold;
+	}
+	
 	public void addLinesStack(int linesSent) {
 		linesStack += linesSent;
 	}
@@ -79,6 +87,8 @@ public class FutureState extends State{
 		this.combo = s.getCombo();
 		this.linesStack = s.getLinesStack();
 		this.totalSent = s.getTotalLinesSent();
+		this.hold = s.getHold();
+		this.legalMoves = s.getLegalMoves();
 		Arrays.fill(this.top,0);
 		for(int i=field.length-1;i>=0;i--) {
 			System.arraycopy(field[i], 0, this.field[i], 0, field[i].length);
@@ -157,20 +167,26 @@ public class FutureState extends State{
 	
 	//gives legal moves for 
 	public int[][] legalMoves() {
-		return legalMoves[nextPiece];
+		if (hold == -1) return legalMoves[nextPiece];
+		else {
+			int[][] result = new int[legalMoves[nextPiece].length + legalMoves[hold].length][];
+			System.arraycopy(legalMoves[nextPiece], 0, result, 0, legalMoves[nextPiece].length);
+			System.arraycopy(legalMoves[hold], 0, result, legalMoves[nextPiece].length, legalMoves[hold].length);
+			return result;
+		}
 	}
 
 	//make a move based on the move index - its order in the legalMoves list
-	public void makeMove(int move) {
-		makeMove(legalMoves[nextPiece][move]);
+	public void makeMove(int move, int nextPiece) {
+		makeMove(legalMoves[nextPiece][move%getLegalMoves()[this.nextPiece].length],nextPiece);
 	}
 
 	//make a move based on an array of orient and slot
-	public void makeMove(int[] move) {
-		makeMove(move[ORIENT],move[SLOT]);
+	public void makeMove(int[] move, int nextPiece) {
+		makeMove(move[ORIENT],move[SLOT],nextPiece);
 	}
 	//returns false if you lose - true otherwise
-	public boolean makeMove(int orient, int slot) {
+	public boolean makeMove(int orient, int slot, int nextPiece) {
 		turn++;
 		//height if the first column makes contact
 		int height = top[slot] - pBottom[nextPiece][orient][0];
@@ -237,6 +253,9 @@ public class FutureState extends State{
 			sent -= linesStack;
 			linesStack = 0;
 		}
+
+		if (nextPiece == hold) hold = this.nextPiece;
+
 		return valid;
 	}
 

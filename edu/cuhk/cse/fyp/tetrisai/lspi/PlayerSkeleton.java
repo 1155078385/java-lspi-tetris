@@ -1,3 +1,5 @@
+package edu.cuhk.cse.fyp.tetrisai.lspi;
+
 import java.text.DecimalFormat;
 
 
@@ -26,7 +28,8 @@ public class PlayerSkeleton {
 		if(fs2==null) fs2 = new FutureState();
 		fs.resetToCurrentState(s); //set the state to the current to prepare to simulate next move.
 		int maxMove = pickBestMove(s, legalMoves, feature);  //pick best move returns the highest scoring weighted features
-		fs.makeMove(maxMove);//simulate next step
+		int nextPiece = (maxMove<s.getLegalMoves()[s.getNextPiece()].length ? s.getNextPiece() : s.getHold());
+		fs.makeMove(maxMove,nextPiece);//simulate next step
 		if(learns) {
 			if(past == null) past = new double[BasisFunction.FEATURE_COUNT]; 
 			else {
@@ -59,9 +62,10 @@ public class PlayerSkeleton {
 		int d = legalMoves.length;
 		int init = (int)(Math.random()*d); //randomise the starting point to look at so that 0 is not always the first highest score
 		int m = (init+1)%d;
-		int maxMove = m ;
+		int maxMove = m;
 		while(m != init){
-			fs.makeMove(m);
+			int nextPiece = (m<s.getLegalMoves()[s.getNextPiece()].length ? s.getNextPiece() : s.getHold());
+			fs.makeMove(m,nextPiece);
 			if(!fs.hasLost()) {
 				double[] f = bs.getFeatureArray(s, fs);
 				score = score(f);
@@ -95,7 +99,8 @@ public class PlayerSkeleton {
 		fs.resetToCurrentState(s1); //set the state to the current to prepare to simulate next move.
 		fs2.resetToCurrentState(s2);
 		int maxMove = pickBestMove(s1, s2, legalMoves, feature);  //pick best move returns the highest scoring weighted features
-		fs.makeMove(maxMove);//simulate next step
+		int nextPiece = (maxMove<s1.getLegalMoves()[s1.getNextPiece()].length ? s1.getNextPiece() : s1.getHold());
+		fs.makeMove(maxMove,nextPiece);//simulate next step
 		if(learns) {
 			if(past == null) past = new double[TwoPlayerBasisFunction.FEATURE_COUNT]; 
 			else {
@@ -129,9 +134,10 @@ public class PlayerSkeleton {
 		int d = legalMoves.length;
 		int init = (int)(Math.random()*d); //randomise the starting point to look at so that 0 is not always the first highest score
 		int m = (init+1)%d;
-		int maxMove = m ;
+		int maxMove = m;
 		while(m != init){
-			fs.makeMove(m);
+			int nextPiece = (m<s1.getLegalMoves()[s1.getNextPiece()].length ? s1.getNextPiece() : s1.getHold());
+			fs.makeMove(m,nextPiece);
 			fs2.addLinesStack(fs.getLinesSent());
 			if(!fs.hasLost()) {
 				double[] f = bs2.getFeatureArray(s1, fs, s2, fs2);
@@ -167,11 +173,16 @@ public class PlayerSkeleton {
 
 		State s = new State();
 		TFrame t = new TFrame(s);
+		s.setHold(s.getNextPiece());
+		s.setNextPiece(s.randomPiece());
 
 		while(!s.hasLost()) {
-			s.makeMove(p.pickMove(s,s.legalMoves()));
+			int move = p.pickMove(s,s.legalMoves());
+			int nextPiece = (move<s.getLegalMoves()[s.getNextPiece()].length ? s.getNextPiece() : s.getHold());
+			s.makeMove(move,nextPiece);
 			s.draw();
 			s.drawNext(0,0);
+			String input = System.console().readLine();
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) {

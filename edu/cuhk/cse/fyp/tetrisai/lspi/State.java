@@ -1,3 +1,5 @@
+package edu.cuhk.cse.fyp.tetrisai.lspi;
+
 import java.awt.Color;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -41,6 +43,7 @@ public class State {
 	private int combo = 0;
 	private int linesStack = 0;
 	private int totalSent = 0;
+	private int hold = -1;
 	
 	//all legal moves - first index is piece type - then a list of 2-length arrays
 	protected static int[][][] legalMoves = new int[N_PIECES][][];
@@ -123,6 +126,10 @@ public class State {
 		return field;
 	}
 
+	public int[][][] getLegalMoves() {
+		return legalMoves;
+	}
+
 	public int[] getTop() {
 		return top;
 	}
@@ -192,6 +199,14 @@ public class State {
 		return totalSent;
 	}
 	
+	public int getHold() {
+		return hold;
+	}
+	
+	public void setHold(int piece) {
+		hold = piece;
+	}
+	
 	public void addlinesStack(int linesSent) {
 		linesStack += linesSent;
 	}
@@ -216,7 +231,7 @@ public class State {
 	}
 	
 	//random integer, returns 0-6
-	private int randomPiece() {
+	public int randomPiece() {
 		if (bag_index < 0 || bag_index > 6) {
 			shuffleBag();
 			bag_index = 0;
@@ -295,21 +310,27 @@ public class State {
 	
 	//gives legal moves for 
 	public int[][] legalMoves() {
-		return legalMoves[nextPiece];
+		if (hold == -1) return legalMoves[nextPiece];
+		else {
+			int[][] result = new int[legalMoves[nextPiece].length + legalMoves[hold].length][];
+			System.arraycopy(legalMoves[nextPiece], 0, result, 0, legalMoves[nextPiece].length);
+			System.arraycopy(legalMoves[hold], 0, result, legalMoves[nextPiece].length, legalMoves[hold].length);
+			return result;
+		}
 	}
 	
 	//make a move based on the move index - its order in the legalMoves list
-	public void makeMove(int move) {
-		makeMove(legalMoves[nextPiece][move]);
+	public void makeMove(int move, int nextPiece) {
+		makeMove(legalMoves[nextPiece][move%getLegalMoves()[this.nextPiece].length], nextPiece);
 	}
 	
 	//make a move based on an array of orient and slot
-	public void makeMove(int[] move) {
-		makeMove(move[ORIENT],move[SLOT]);
+	public void makeMove(int[] move, int nextPiece) {
+		makeMove(move[ORIENT],move[SLOT],nextPiece);
 	}
 	
 	//returns false if you lose - true otherwise
-	public boolean makeMove(int orient, int slot) {
+	public boolean makeMove(int orient, int slot, int nextPiece) {
 		turn++;
 		//height if the first column makes contact
 		int height = top[slot]-pBottom[nextPiece][orient][0];
@@ -377,9 +398,12 @@ public class State {
 			linesStack = 0;
 		}
 
+		// set hold piece if it is selected to make move
+		if (nextPiece == hold) hold = this.nextPiece;
+
 		//pick a new piece
 		if (doublePlayer == false)
-			nextPiece = randomPiece();
+			this.nextPiece = randomPiece();
 
 		
 		return valid;
@@ -423,6 +447,13 @@ public class State {
 		for(int i = 0; i < pWidth[nextPiece][orient]; i++) {
 			for(int j = pBottom[nextPiece][orient][i]; j <pTop[nextPiece][orient][i]; j++) {
 				drawBrick(i+slot, j+ROWS+1);
+			}
+		}
+		if (hold != -1) {
+			for(int i = 0; i < pWidth[hold][orient]; i++) {
+				for (int j = pBottom[hold][orient][i]; j < pTop[hold][orient][i]; j++) {
+					drawBrick(i+slot+COLS/2, j+ROWS+1);
+				}
 			}
 		}
 		label.show();

@@ -1,3 +1,5 @@
+package edu.cuhk.cse.fyp.tetrisai.lspi;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -108,6 +110,7 @@ public class Trainer {
 		int spin = 0;
 		int[] bag = {0, 1, 2, 3, 4, 5, 6};
 		int bag_index = 7;
+		boolean firstTime = true;
 		while(!s1.hasLost()&&!s2.hasLost()){
 			if (bag_index < 0 || bag_index > 6) {
 				Random rnd = ThreadLocalRandom.current();
@@ -121,24 +124,38 @@ public class Trainer {
 				bag_index = 0;
 			}
 			int nextPiece = bag[bag_index++];
+			if (firstTime) {
+				s1.setHold(nextPiece);
+				s2.setHold(nextPiece);
+				nextPiece = bag[bag_index++];
+				firstTime = false;
+			}
 			s1.setNextPiece(nextPiece);
 			s2.setNextPiece(nextPiece);
 
-			s1.makeMove(p1.pickMove(s1, s2, s1.legalMoves()));
+			int s1move = p1.pickMove(s1, s2, s1.legalMoves());
+			int s1nextPiece = (s1move<s1.getLegalMoves()[s1.getNextPiece()].length ? s1.getNextPiece() : s1.getHold());
+			s1.makeMove(s1move,s1nextPiece);
 			s2.addlinesStack(s1.getLinesSent());
-			//s1.draw();
-			//s1.drawNext(0,0);
-			//s2.draw();
-			//s2.drawNext(0,0);
-			//String input1 = System.console().readLine();
+			/*
+			s1.draw();
+			s1.drawNext(0,0);
+			s2.draw();
+			s2.drawNext(0,0);
+			String input1 = System.console().readLine();
+			*/
 			if (!s2.hasLost()) {
-				s2.makeMove(p2.pickMove(s2, s1, s2.legalMoves()));
+				int s2move = p2.pickMove(s2, s1, s2.legalMoves());
+				int s2nextPiece = (s2move<s2.getLegalMoves()[s2.getNextPiece()].length ? s2.getNextPiece() : s2.getHold());
+				s2.makeMove(s2move,s2nextPiece);
 				s1.addlinesStack(s2.getLinesSent());
-				//s1.draw();
-				//s1.drawNext(0,0);
-				//s2.draw();
-				//s2.drawNext(0,0);
-				//String input2 = System.console().readLine();
+				/*
+				s1.draw();
+				s1.drawNext(0,0);
+				s2.draw();
+				s2.drawNext(0,0);
+				String input2 = System.console().readLine();
+				*/
 			}
 			if(i == SPIN_STEP_DELAY) {
 				System.out.print("\r");
